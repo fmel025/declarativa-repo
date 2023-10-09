@@ -50,17 +50,19 @@ altura([SubI, _, SubD], Altura) :-
     Altura is max(AlturaI, AlturaD) + 1.
 
 % Tareas:
-% Insertar nuevo dato en un arbol binario
+% Insertar nuevo dato en un arbol binario, no se permiten repetidos
 
 % Caso base: El arbol estaba vacio o no habian nodos ahi
-
 insertar(Num, [], [ [], Num, [] ]) :- !.
+
+% Caso donde el numero es igual al dato del nodo actual
+insertar(Num, [SubI, Num, SubD], [SubI, Num, SubD]) :- !.
 
 % Caso 1: El numero es menor que el dato del nodo actual
 % SubI es el arbol izquierdo del nodo actual
 % SubD es el arbol derecho del nodo actual
 insertar(Num, [SubI, Dato, SubD], [SubINuevo, Dato, SubD]) :-
-    Num =< Dato, !,
+    Num < Dato, !,
     insertar(Num, SubI, SubINuevo).
 
 % Caso 2: El numero es mayor que el dato del nodo actual
@@ -104,3 +106,6 @@ pruebaEliminar :-
     mostrarPre(Arbol), nl,
     eliminar(1, Arbol, ArbolNuevo),
     mostrarPre(ArbolNuevo), nl.
+
+% Eliminar un nodo cualquier de un abb sin considerar repeticion
+
