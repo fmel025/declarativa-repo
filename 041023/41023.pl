@@ -109,3 +109,5 @@ pruebaEliminar :-
 
 % Eliminar un nodo cualquier de un abb sin considerar repeticion
 
+% Devuelve el mayor entre dos numeros
+mayor(A, B, A) :- A > B, !.
